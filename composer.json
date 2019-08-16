@@ -1,12 +1,14 @@
 {
-    "name": "ssoauth/ssoauth-sp",
+    "name": "sjAbaquita/ssoauth-sp",
     "description": "Service Provider",
+    "type": "package",
     "authors": [
         {
             "name": "Seth",
             "email": "sj.abaquita26@gmail.com"
         }
     ],
+    "license": "mit",
     "autoload": {
         "psr-4": {
             "SSOAuth\\": "src/"
