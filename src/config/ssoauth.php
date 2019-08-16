@@ -4,9 +4,10 @@ return [
     'client_id' => env('EM_CLIENT_ID'),
     'api_key'   => env('EM_API_KEY'),
     'redirect_uri'  => env('EM_REDIRECT_URI'),
-    'name'  => env('EM_NAME'),
+    'name'  => '',
 
     'routesPrefix'  => 'ssoauth',
+    'redirect_if_authenticated' => '/home',
 
     'idp'   => [
         'host'  => 'http://192.168.0.99:8000',

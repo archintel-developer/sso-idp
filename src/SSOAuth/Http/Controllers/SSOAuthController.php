@@ -118,7 +118,7 @@ class SSOAuthController extends Controller
             $user = new \App\User;
             $user->email = $account->email;
             $user->name = $account->name;
-            
+
             // $user->firstname = $account->firstname;
             // $user->lastname = $account->lastname;
             $user->password = \Hash::make('123Password');
@@ -131,16 +131,20 @@ class SSOAuthController extends Controller
 
     public function redirect()
     {
-        $idp_login = config('ssoauth.idp.login_uri');
-        $client_id = config('ssoauth.client_id');
-        $api_key   = config('ssoauth.api_key');
-        $redirect  = config('ssoauth.redirect_uri');
-        $name      = config('ssoauth.name');
+        if(\Auth::check()) {
+            return redirect()->to(config('ssoauth.redirect_if_authenticated'));
+        } else {
+            $idp_login = config('ssoauth.idp.login_uri');
+            $client_id = config('ssoauth.client_id');
+            $api_key   = config('ssoauth.api_key');
+            $redirect  = config('ssoauth.redirect_uri');
+            $name      = config('ssoauth.name');
 
-        $dosso     = config('ssoauth.add_query.dosso');
-        $action    = config('ssoauth.add_query.action');
+            $dosso     = config('ssoauth.add_query.dosso');
+            $action    = config('ssoauth.add_query.action');
 
-        return redirect()->away($idp_login.'?client_id='.$client_id.'&as='.base64_encode($api_key).'&name='.$name.'&dosso='.$dosso.'&RelayState='.$redirect.'&action='.$action);
+            return redirect()->away($idp_login.'?client_id='.$client_id.'&as='.base64_encode($api_key).'&name='.$name.'&dosso='.$dosso.'&RelayState='.$redirect.'&action='.$action);
+        }
     }
 
 }
