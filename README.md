@@ -14,7 +14,8 @@ php artisan vendor:publish
 ```
 and publish the **Provider:** _SSOAuth\SSOAuthServiceProvider_
 
-routes and config are added located in config folder with filename **ssoauth.php**
+routes and config are added 
+config file is located in config folder with filename **ssoauth.php**
 
 
 also add in the .env file
