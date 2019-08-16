@@ -118,6 +118,9 @@ class SSOAuthController extends Controller
             $user = new \App\User;
             $user->email = $account->email;
             $user->name = $account->name;
+            
+            // $user->firstname = $account->firstname;
+            // $user->lastname = $account->lastname;
             $user->password = \Hash::make('123Password');
 
             $user->save();
