@@ -1,0 +1,27 @@
+{
+    "name": "ssoauth/ssoauth-sp",
+    "description": "Service Provider",
+    "authors": [
+        {
+            "name": "Seth",
+            "email": "sj.abaquita26@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SSOAuth\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SSOAuth\\SSOAuthServiceProvider"
+            ],
+            "aliases": {
+                "Saml2": "SSOAuth\\Facades\\SSOAuth"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
