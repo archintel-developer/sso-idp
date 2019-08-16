@@ -7,6 +7,11 @@ use Illuminate\Routing\Controller;
 
 class SSOAuthController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('web');
+    }
     /**
      * Display a listing of the resource.
      *
