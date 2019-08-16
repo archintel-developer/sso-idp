@@ -1,5 +1,5 @@
 {
-    "name": "ssoauth/emssoauth-sp",
+    "name": "ssoauth/ssoauth-sp",
     "description": "Service Provider",
     "type": "package",
     "homepage": "https://github.com/sjAbaquita/ssoauth-sp",
@@ -9,7 +9,7 @@
             "email": "sj.abaquita26@gmail.com"
         }
     ],
-    "license": "mit",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "SSOAuth\\": "src/"
@@ -25,7 +25,5 @@
             }
         }
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "require": {}
 }
