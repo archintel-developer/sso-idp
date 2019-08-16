@@ -1,8 +1,6 @@
 {
     "name": "ssoauth/ssoauth-sp",
     "description": "Service Provider",
-    "type": "package",
-    "homepage": "https://github.com/sjAbaquita/ssoauth-sp",
     "authors": [
         {
             "name": "Seth",
