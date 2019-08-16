@@ -1,5 +1,5 @@
 {
-    "name": "ssoauth/ssoauth-sp",
+    "name": "ssoauth/emssoauth-sp",
     "description": "Service Provider",
     "type": "package",
     "homepage": "https://github.com/sjAbaquita/ssoauth-sp",
