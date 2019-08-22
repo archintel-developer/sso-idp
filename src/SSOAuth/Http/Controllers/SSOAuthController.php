@@ -102,10 +102,10 @@ class SSOAuthController extends Controller
         // return $user;
         if(\Auth::check()) {
             // return auth()->user();
-            return redirect()->to('/home');
+            return redirect()->to(config('ssoauth.redirect_if_authenticated'));
         }
 
-        return redirect()->to('/home');
+        return redirect()->to(config('ssoauth.redirect_if_authenticated'));
     }
 
     protected function getUser($nameID)
@@ -121,7 +121,7 @@ class SSOAuthController extends Controller
 
             // $user->firstname = $account->firstname;
             // $user->lastname = $account->lastname;
-            $user->password = \Hash::make('123Password');
+            $user->password = \Hash::make('123Password_');
 
             $user->save();
         }
@@ -138,7 +138,11 @@ class SSOAuthController extends Controller
             $client_id = config('ssoauth.client_id');
             $api_key   = config('ssoauth.api_key');
             $redirect  = config('ssoauth.redirect_uri');
-            $name      = config('ssoauth.name');
+            
+            $name_start= strpos($redirect, '//');
+            $name_end  = strpos($redirect, '/', $name_start+2);
+            $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
+            $name      = (config('ssoauth.name') == '') ? $hostname : config('ssoauth.name');
 
             $dosso     = config('ssoauth.add_query.dosso');
             $action    = config('ssoauth.add_query.action');
