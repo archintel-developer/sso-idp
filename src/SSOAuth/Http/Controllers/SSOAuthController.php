@@ -98,14 +98,16 @@ class SSOAuthController extends Controller
         
         $user = $this->getUser($nameID);
 
-        auth()->login($user);
-        // return $user;
-        if(\Auth::check()) {
-            // return auth()->user();
+        if($request->as) {
+            auth()->login($user);
+            // return $user;
+            if(\Auth::check()) {
+                // return auth()->user();
+                return redirect()->to(config('ssoauth.redirect_if_authenticated'));
+            }
+
             return redirect()->to(config('ssoauth.redirect_if_authenticated'));
         }
-
-        return redirect()->to(config('ssoauth.redirect_if_authenticated'));
     }
 
     protected function getUser($nameID)
