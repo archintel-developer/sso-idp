@@ -22,8 +22,8 @@ also add in the .env file
 
 
 ```
-EM_CLIENT_ID=
-EM_API_KEY=
+EM_APP_ID=
+EM_CLIENT_SECRET=
 EM_REDIRECT_URI=
 ```
 
