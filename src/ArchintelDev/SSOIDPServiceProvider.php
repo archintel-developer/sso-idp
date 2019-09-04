@@ -1,5 +1,5 @@
 <?php
-namespace SSOIDP;
+namespace ArchintelDev;
 
 use URL;
 use Illuminate\Support\ServiceProvider;
