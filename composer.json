@@ -10,7 +10,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "SSO-IDP\\": "src/"
+            "ArchintelDev\\": "src/"
         }
     },
     "extra": {
