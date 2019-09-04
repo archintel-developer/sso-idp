@@ -1,11 +1,11 @@
 <?php
 
-namespace SSOAuth\Http\Controllers;
+namespace SSOIDP\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
-class SSOAuthController extends Controller
+class SSOIDPController extends Controller
 {
 
     public function __construct()

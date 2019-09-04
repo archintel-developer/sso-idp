@@ -2,10 +2,10 @@
 
 
 Route::get('/redirect', array(
-    'as'    => 'ssoauth.redirect',
-    'uses'  => 'SSOAuth\Http\Controllers\SSOAuthController@redirect',
+    'as'    => 'ssoidp.redirect',
+    'uses'  => 'SSOIDP\Http\Controllers\SSOIDPController@redirect',
 ));
 Route::get('/callback', array(
-    'as'    => 'ssoauth.callback',
-    'uses'  => 'SSOAuth\Http\Controllers\SSOAuthController@callback',
+    'as'    => 'ssoidp.callback',
+    'uses'  => 'SSOIDP\Http\Controllers\SSOIDPController@callback',
 ));

@@ -10,16 +10,16 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "SSOAuth\\": "src/"
+            "SSOIDP\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "SSOAuth\\SSOAuthServiceProvider"
+                "ArchintelDev\\SSOIDPServiceProvider"
             ],
             "aliases": {
-                "Saml2": "SSOAuth\\Facades\\SSOAuth"
+                "Saml2": "ArchintelDev\\Facades\\SSOIDP"
             }
         }
     },

@@ -1,10 +1,10 @@
-# ssoauth-sp
+# sso-idp
 Service provider
 
 
 ## Installation
 ```
-composer require ssoauth/ssoauth-sp
+composer require archintel-dev/sso-idp
 ```
 
 in your terminal run this command
@@ -12,10 +12,10 @@ in your terminal run this command
 ```
 php artisan vendor:publish
 ```
-and publish the **Provider:** _SSOAuth\SSOAuthServiceProvider_
+and publish the **Provider:** _SSOIDP\SSOIDPServiceProvider_
 
 routes and config are added 
-config file is located in config folder with filename **ssoauth.php**
+config file is located in config folder with filename **ssoidp.php**
 
 
 also add in the .env file
