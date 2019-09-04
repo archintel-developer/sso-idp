@@ -137,8 +137,8 @@ class SSOIDPController extends Controller
             return redirect()->to(config('ssoauth.redirect_if_authenticated'));
         } else {
             $idp_login = config('ssoauth.idp.login_uri');
-            $client_id = config('ssoauth.client_id');
-            $api_key   = config('ssoauth.api_key');
+            $app_id = config('ssoauth.app_id');
+            $client_secret   = config('ssoauth.client_secret');
             $redirect  = config('ssoauth.redirect_uri');
             
             // $name_start= strpos($redirect, '//');
@@ -149,7 +149,7 @@ class SSOIDPController extends Controller
             // $dosso     = config('ssoauth.add_query.dosso');
             // $action    = config('ssoauth.add_query.action');
 
-            return redirect()->away($idp_login.'?client_id='.$client_id.'&as='.base64_encode($api_key) .'&RelayState='.$redirect);
+            return redirect()->away($idp_login.'?app_id='.$app_id.'&as='.base64_encode($client_secret) .'&RelayState='.$redirect);
         }
     }
 

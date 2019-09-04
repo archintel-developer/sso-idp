@@ -1,8 +1,8 @@
 <?php
 
 return [
-    'client_id' => env('EM_CLIENT_ID'),
-    'api_key'   => env('EM_API_KEY'),
+    'app_id' => env('EM_APP_ID'),
+    'client_secret'   => env('EM_CLIENT_SECRET'),
     'redirect_uri'  => env('EM_REDIRECT_URI'),
     // 'name'  => '',
 
