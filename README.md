@@ -12,7 +12,7 @@ in your terminal run this command
 ```
 php artisan vendor:publish
 ```
-and publish the **Provider:** _SSOIDP\SSOIDPServiceProvider_
+and publish the **Provider:** _ArchintelDev\SSOIDPServiceProvider_
 
 routes and config are added 
 config file is located in config folder with filename **ssoidp.php**
