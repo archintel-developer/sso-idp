@@ -1,10 +1,10 @@
 {
-    "name": "ssoauth/ssoauth-sp",
-    "description": "Service Provider",
+    "name": "archintel-dev/sso-idp",
+    "description": "Identity Provider",
     "authors": [
         {
-            "name": "Seth",
-            "email": "sj.abaquita26@gmail.com"
+            "name": "Archintel Developer",
+            "email": "developer@archintel.com"
         }
     ],
     "license": "MIT",
