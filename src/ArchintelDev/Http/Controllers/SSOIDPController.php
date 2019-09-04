@@ -103,10 +103,10 @@ class SSOIDPController extends Controller
             // return $user;
             if(\Auth::check()) {
                 // return auth()->user();
-                return redirect()->to(config('ssoauth.redirect_if_authenticated'));
+                return redirect()->to(config('ssoidp.redirect_if_authenticated'));
             }
 
-            return redirect()->to(config('ssoauth.redirect_if_authenticated'));
+            return redirect()->to(config('ssoidp.redirect_if_authenticated'));
         }
     }
 
@@ -134,20 +134,20 @@ class SSOIDPController extends Controller
     public function login()
     {
         if(\Auth::check()) {
-            return redirect()->to(config('ssoauth.redirect_if_authenticated'));
+            return redirect()->to(config('ssoidp.redirect_if_authenticated'));
         } else {
-            $idp_login = config('ssoauth.idp.login_uri');
-            $app_id = config('ssoauth.app_id');
-            $client_secret   = config('ssoauth.client_secret');
-            $redirect  = config('ssoauth.redirect_uri');
+            $idp_login = config('ssoidp.idp.login_uri');
+            $app_id = config('ssoidp.app_id');
+            $client_secret   = config('ssoidp.client_secret');
+            $redirect  = config('ssoidp.redirect_uri');
             
             // $name_start= strpos($redirect, '//');
             // $name_end  = strpos($redirect, '/', $name_start+2);
             // $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
-            // $name      = (config('ssoauth.name') == '') ? $hostname : config('ssoauth.name');
+            // $name      = (config('ssoidp.name') == '') ? $hostname : config('ssoassoidputh.name');
 
-            // $dosso     = config('ssoauth.add_query.dosso');
-            // $action    = config('ssoauth.add_query.action');
+            // $dosso     = config('ssoidp.add_query.dosso');
+            // $action    = config('ssoidp.add_query.action');
 
             return redirect()->away($idp_login.'?app_id='.$app_id.'&as='.base64_encode($client_secret) .'&RelayState='.$redirect);
         }
