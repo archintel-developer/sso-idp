@@ -1,11 +1,11 @@
 <?php
 
 
-Route::get('/redirect', array(
-    'as'    => 'ssoidp.redirect',
-    'uses'  => 'ArchintelDev\Http\Controllers\SSOIDPController@redirect',
+Route::get('/login/sso', array(
+    'as'    => 'sso.login',
+    'uses'  => 'ArchintelDev\Http\Controllers\SSOIDPController@login',
 ));
-Route::get('/callback', array(
-    'as'    => 'ssoidp.callback',
+Route::get('/login/sso/callback', array(
+    'as'    => 'sso.callback',
     'uses'  => 'ArchintelDev\Http\Controllers\SSOIDPController@callback',
 ));

@@ -131,7 +131,7 @@ class SSOIDPController extends Controller
         return $user;
     }
 
-    public function redirect()
+    public function login()
     {
         if(\Auth::check()) {
             return redirect()->to(config('ssoauth.redirect_if_authenticated'));
@@ -141,15 +141,15 @@ class SSOIDPController extends Controller
             $api_key   = config('ssoauth.api_key');
             $redirect  = config('ssoauth.redirect_uri');
             
-            $name_start= strpos($redirect, '//');
-            $name_end  = strpos($redirect, '/', $name_start+2);
-            $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
-            $name      = (config('ssoauth.name') == '') ? $hostname : config('ssoauth.name');
+            // $name_start= strpos($redirect, '//');
+            // $name_end  = strpos($redirect, '/', $name_start+2);
+            // $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
+            // $name      = (config('ssoauth.name') == '') ? $hostname : config('ssoauth.name');
 
-            $dosso     = config('ssoauth.add_query.dosso');
-            $action    = config('ssoauth.add_query.action');
+            // $dosso     = config('ssoauth.add_query.dosso');
+            // $action    = config('ssoauth.add_query.action');
 
-            return redirect()->away($idp_login.'?client_id='.$client_id.'&as='.base64_encode($api_key).'&name='.$name.'&dosso='.$dosso.'&RelayState='.$redirect.'&action='.$action);
+            return redirect()->away($idp_login.'?client_id='.$client_id.'&as='.base64_encode($api_key) .'&RelayState='.$redirect);
         }
     }
 
