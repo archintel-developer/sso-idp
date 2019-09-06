@@ -91,14 +91,18 @@ class SSOIDPController extends Controller
 
     public function callback(Request $request)
     {
-        $a = strlen($request->response);
-        $i = strpos($request->response, '.', 0);
-        $nameID = substr($request->response, 0, $i);
-        $data = substr($request->response, $i, $a);
+        // $a = strlen($request->response);
+        // $i = strpos($request->response, '.', 0);
+        // $nameID = substr($request->response, 0, $i);
+        // $data = substr($request->response, $i, $a);
+
+        $nameID = json_decode($request->response);
         
         $user = $this->getUser($nameID);
 
-        if($request->as) {
+        $auth = str_replace('"', "", json_encode($nameID->auth));
+
+        if($auth) {
             auth()->login($user);
             // return $user;
             if(\Auth::check()) {
@@ -112,21 +116,28 @@ class SSOIDPController extends Controller
 
     protected function getUser($nameID)
     {
-        $a = base64_decode($nameID);
-        $account = json_decode($a);
+        // $a = base64_decode($nameID);
+        // $account = json_decode($a);
+        $email = str_replace('"', "", json_encode($nameID->user->email));
+        // $firstname = str_replace('"', "", json_encode($nameID->user->firstname));
+        // $lastname = str_replace('"', "", json_encode($nameID->user->lastname));
+        $name = str_replace('"', "", json_encode($nameID->user->name));
         
-        $user = \App\User::whereEmail($account->email)->first();
+        $user = \App\User::whereEmail($email)->first();
         if(!$user) {
             $user = new \App\User;
-            $user->email = $account->email;
-            $user->name = $account->name;
+            $user->email = $email;
+            $user->name = $name;
 
             // $user->firstname = $account->firstname;
             // $user->lastname = $account->lastname;
             $user->password = \Hash::make('123Password_');
+            // $user->idp_token = str_replace('"', "", json_encode($nameID->idp_token));
 
             $user->save();
         }
+        // $user->idp_token = str_replace('"', "", json_encode($nameID->idp_token));
+        // $user->save();
         //do save to provider table if want
         return $user;
     }
