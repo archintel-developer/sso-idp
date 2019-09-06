@@ -10,6 +10,7 @@ return [
 
     'routesPrefix'  => 'ssoauth',
     'redirect_if_authenticated' => '/home',
+    'redirect_after_logout' => '/register',
 
     'idp'   => [
         'login_uri' => $idp_host.'/login/v1/autho/authAccount',

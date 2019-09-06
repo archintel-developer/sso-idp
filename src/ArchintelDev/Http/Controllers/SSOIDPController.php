@@ -167,9 +167,10 @@ class SSOIDPController extends Controller
     public function logout(Request $request)
     {
         $idp_logout = config('ssoidp.idp.logout_uri');
+        $redirect_back = config('ssoidp.redirect_after_logout');
         auth()->logout();
 
-        return redirect($idp_logout.'?previous='.$request->root().'/login');
+        return redirect($idp_logout.'?previous='.($redirect_back == null ? $request->root().'/login' : $redirect_back));
     }
 
 }
