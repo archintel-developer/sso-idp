@@ -144,13 +144,21 @@ class SSOIDPController extends Controller
             // $name_start= strpos($redirect, '//');
             // $name_end  = strpos($redirect, '/', $name_start+2);
             // $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
-            // $name      = (config('ssoidp.name') == '') ? $hostname : config('ssoassoidputh.name');
+            // $name      = (config('ssoidp.name') == '') ? $hostname : configssoidp('ssoassoidputh.name');
 
             // $dosso     = config('ssoidp.add_query.dosso');
             // $action    = config('ssoidp.add_query.action');
 
             return redirect()->away($idp_login.'?app_id='.$app_id.'&as='.base64_encode($client_secret) .'&RelayState='.$redirect);
         }
+    }
+
+    public function logout(Request $request)
+    {
+        $idp_logout = config('ssoidp.idp.logout_uri');
+        auth()->logout();
+
+        return redirect($idp_logout.'?previous='.$request->root().'/login');
     }
 
 }
