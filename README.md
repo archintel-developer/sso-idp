@@ -36,10 +36,10 @@ EM_REDIRECT_URI=
 
 **Using logout:**
 copy this in blade
-```
+```php
 <a href="/logout/sso" >Logout</a>
 ```
 or
-```
+```php
 <a href="{{ route('sso.logout') }}" >Logout</a>
 ```
