@@ -12,83 +12,7 @@ class SSOIDPController extends Controller
     {
         $this->middleware('web');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
-
+    
     public function callback(Request $request)
     {
         // $a = strlen($request->response);
@@ -116,28 +40,23 @@ class SSOIDPController extends Controller
 
     protected function getUser($nameID)
     {
-        // $a = base64_decode($nameID);
-        // $account = json_decode($a);
         $email = str_replace('"', "", json_encode($nameID->user->email));
-        // $firstname = str_replace('"', "", json_encode($nameID->user->firstname));
-        // $lastname = str_replace('"', "", json_encode($nameID->user->lastname));
-        $name = str_replace('"', "", json_encode($nameID->user->name));
+        $firstname = str_replace('"', "", json_encode($nameID->user->firstname));
+        $lastname = str_replace('"', "", json_encode($nameID->user->lastname));
         
         $user = \App\User::whereEmail($email)->first();
         if(!$user) {
             $user = new \App\User;
-            $user->email = $email;
-            $user->name = $name;
 
-            // $user->firstname = $account->firstname;
-            // $user->lastname = $account->lastname;
+            $user->email = $email;
+            $user->firstname = $firstname;
+            $user->lastname = $lastname;
             $user->password = \Hash::make('123Password_');
             // $user->idp_token = str_replace('"', "", json_encode($nameID->idp_token));
 
             $user->save();
         }
-        // $user->idp_token = str_replace('"', "", json_encode($nameID->idp_token));
-        // $user->save();
+        
         //do save to provider table if want
         return $user;
     }
@@ -151,14 +70,6 @@ class SSOIDPController extends Controller
             $app_id = config('ssoidp.app_id');
             $client_secret   = config('ssoidp.client_secret');
             $redirect  = config('ssoidp.redirect_uri');
-            
-            // $name_start= strpos($redirect, '//');
-            // $name_end  = strpos($redirect, '/', $name_start+2);
-            // $hostname  = substr($redirect, $name_start+2, $name_end-$name_start-2);
-            // $name      = (config('ssoidp.name') == '') ? $hostname : configssoidp('ssoassoidputh.name');
-
-            // $dosso     = config('ssoidp.add_query.dosso');
-            // $action    = config('ssoidp.add_query.action');
 
             return redirect()->away($idp_login.'?app_id='.$app_id.'&as='.base64_encode($client_secret) .'&RelayState='.$redirect);
         }
