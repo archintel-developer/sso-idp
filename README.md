@@ -20,7 +20,7 @@ or you can use this command
 php artisan vendor:publish --provider="ArchintelDev\SSOIDPServiceProvider"
 ```
 
-routes and config are added 
+routes and config are added  
 config file is located in config folder with filename **ssoidp.php**
 
 
