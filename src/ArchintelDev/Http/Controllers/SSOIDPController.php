@@ -2,6 +2,7 @@
 
 namespace ArchintelDev\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -15,28 +16,44 @@ class SSOIDPController extends Controller
     
     public function callback(Request $request)
     {
-        // $a = strlen($request->response);
-        // $i = strpos($request->response, '.', 0);
-        // $nameID = substr($request->response, 0, $i);
-        // $data = substr($request->response, $i, $a);
+        $result = json_decode(base64_decode($request->response), true);
 
-        $nameID = json_decode($request->response);
+        $client = new Client();
+
+        $response = $client->request('GET', config('ssoidp.idp.host').'/api/sso/get-user', [
+            'headers' => [
+                'Content-Type'  =>  'application/json',
+                'Authorization' => 'Bearer '.$result['access_token'].''
+            ]
+        ]);
         
-        $user = $this->getUser($nameID);
-
-        $auth = str_replace('"', "", json_encode($nameID->auth));
-
-        if($auth) {
-            auth()->login($user);
-            // return $user;
-            if(\Auth::check()) {
-                // return auth()->user();
-                return redirect()->to(config('ssoidp.redirect_if_authenticated'));
-            }
-
-            return redirect()->to(config('ssoidp.redirect_if_authenticated'));
-        }
+        return json_decode((string) $response->getBody(), true);
     }
+    
+    // public function callback(Request $request)
+    // {
+    //     // $a = strlen($request->response);
+    //     // $i = strpos($request->response, '.', 0);
+    //     // $nameID = substr($request->response, 0, $i);
+    //     // $data = substr($request->response, $i, $a);
+
+    //     $nameID = json_decode($request->response);
+        
+    //     $user = $this->getUser($nameID);
+
+    //     $auth = str_replace('"', "", json_encode($nameID->auth));
+
+    //     if($auth) {
+    //         auth()->login($user);
+    //         // return $user;
+    //         if(\Auth::check()) {
+    //             // return auth()->user();
+    //             return redirect()->to(config('ssoidp.redirect_if_authenticated'));
+    //         }
+
+    //         return redirect()->to(config('ssoidp.redirect_if_authenticated'));
+    //     }
+    // }
 
     protected function getUser($nameID)
     {

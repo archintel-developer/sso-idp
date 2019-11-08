@@ -13,6 +13,7 @@ return [
     'redirect_after_logout' => '/register',
 
     'idp'   => [
+        'host'  =>  $idp_host,
         'login_uri' => $idp_host.'/login/v1/autho/authAccount',
         'logout_uri' => $idp_host.'/v1/auth/logout',
     ],
